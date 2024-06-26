@@ -371,6 +371,12 @@ function ncc (
           }]
         },
         {
+          test: /\.(sass|scss|css)$/,
+          use: [{
+            loader: eval('__dirname + "/loaders/ignore-loader.js"'),
+          }]
+        },
+        {
           parser: { amd: false },
           exclude: /\.(node|json)$/,
           use: [{
