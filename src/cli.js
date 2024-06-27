@@ -26,6 +26,7 @@ Commands:
 Options:
   -o, --out [file]         Output directory for build (defaults to dist)
   -m, --minify             Minify output
+  -c, --tsconfig           Custom tsconfig.json file
   -C, --no-cache           Skip build cache population
   -s, --source-map         Generate source map
   --no-source-map-register Skip source-map-register source map support
@@ -166,7 +167,9 @@ async function runCmd (argv, stdout, stderr) {
       "-t": "--transpile-only",
       "--license": String,
       "--stats-out": String,
-      "--target": String
+      "--target": String,
+      "-c": "--tsconfig",
+      "--tsconfig": String
     }, {
       permissive: false,
       argv
@@ -269,7 +272,8 @@ async function runCmd (argv, stdout, stderr) {
           transpileOnly: args["--transpile-only"],
           license: args["--license"],
           quiet,
-          target: args["--target"]
+          target: args["--target"],
+          tsconfigFile: args["--tsconfig"],
         }
       );
 

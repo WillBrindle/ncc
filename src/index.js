@@ -57,7 +57,8 @@ function ncc (
     production = true,
     // webpack defaults to `module` and `main`, but that's
     // not really what node.js supports, so we reset it
-    mainFields = ['main']
+    mainFields = ['main'],
+    tsconfigFile = "tsconfig.json",
   } = {}
 ) {
   // v8 cache not supported for ES modules
@@ -117,7 +118,7 @@ function ncc (
     const configFileAbsolutePath = walkParentDirs({
       base: process.cwd(),
       start: dirname(entry),
-      filename: 'tsconfig.json',
+      filename: tsconfigFile || 'tsconfig.json',
     });
     fullTsconfig = loadTsconfig(configFileAbsolutePath) || {
       compilerOptions: {}
